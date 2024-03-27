@@ -1,5 +1,5 @@
 const express = require('express');
-const { getContenFile, downloadFile, uploadFile } = require('../controller/files')
+const { getContenFile, downloadFile, uploadFile,getFileAll } = require('../controller/files')
 const { check } = require('express-validator');
 const { validationFields } = require('../middlewares/validationFields');
 const multer  = require('multer')
@@ -23,4 +23,6 @@ router.post('/upload', [ // middlewares
     check('nameFile', 'El nombre del archivo es obligatorio').not().isEmpty(),
     validationFields
 ], uploadFile)
+router.get('/searchFile/:dateFilter/:city/:journalist?',[check('dateFilter','La fecha es obligatoria').not().isEmpty(),validationFields],getFileAll);
+// router.get('/search/:nameFile',searchFile);
 module.exports = router

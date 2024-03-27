@@ -1,23 +1,26 @@
-const { Box } = require('../helpers/box')
-const getAllCategory = (req, res) => {
-    const { token } = req.body;
-  
-    category = Box( token ).folders.getItems('252580355253')
+const { Box,getTokenBox } = require('../helpers/box')
+
+const getAllCategory = async (req, res) => {
+    const  token  = await getTokenBox();
+    
+    category = Box( token ).folders.getItems('253563613249')
         .then(file => {
             res.send(file.entries);
         })
         .catch(err => { res.send(err) });
 }
-const getCategoryContent = (req, res) => {
-    const { idCategory,token } = req.params
+const getCategoryContent = async (req, res) => {
+    const { idCategory} = req.params
+    const  token  = await getTokenBox();
     Box(token).folders.getItems(idCategory)
         .then(category => {
             res.send(category.entries);
         })
         .catch(err => { res.send(err) })
 }
-const addCategory = (req, res) => {
-    const { nameCategory, token } = req.body;
+const addCategory = async(req, res) => {
+    const { nameCategory } = req.body;
+    const  token  = await getTokenBox();
     Box( token ).folders.create('252580355253', nameCategory)
         .then(() => {
             res.status(201).json({
@@ -27,8 +30,9 @@ const addCategory = (req, res) => {
         })
         .catch(err => { res.send(err) })
 }
-const updateCategory = (req,res) => {
-    const {idCategory,nameCategory,token} = req.body;
+const updateCategory =async (req,res) => {
+    const {idCategory,nameCategory} = req.body;
+    const  token  = await getTokenBox();
     Box( token ).folders.update(idCategory,{name: nameCategory})
         .then(()=>{
             res.status(201).json({

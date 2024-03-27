@@ -2,7 +2,7 @@ const express = require('express');
 const { getAllCategory, getCategoryContent,addCategory, updateCategory } = require('../controller/folders');
 const { check } = require('express-validator');
 const router = express.Router();
-router.post('/', getAllCategory)
+router.get('/', getAllCategory)
 router.get('/:idCategory', getCategoryContent)
 
 // router.post(

@@ -15,9 +15,7 @@ const dbSetting = {
 const dbConnection = async() => {
     try {
         const pool = await sql.connect(dbSetting)
-        // const result = await sql.query`SELECT * FROM Usuario`
         console.log('DB Online')
-        // console.dir(result)    
         return pool;
     } catch (error) {
         console.log(error)

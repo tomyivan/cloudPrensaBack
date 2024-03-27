@@ -21,6 +21,8 @@ app.use('/api/category', require('./routes/category'));
 app.use('/api/file',require('./routes/files'));
 app.use('/api/auth',require('./routes/auth'));
 app.use('/api/user',require('./routes/user'));
+app.use('/api/journalist',require('./routes/journalist'));
+app.use('/api/city',require('./routes/city'))
 app.listen( process.env.PORT, () => {
     console.log(`Servidor corriendo en el: ${ process.env.PORT}`)
 })

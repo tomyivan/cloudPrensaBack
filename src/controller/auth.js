@@ -3,6 +3,7 @@ const bcrypt = require('bcryptjs');
 const { dbConnection, sql } = require('../database/config');
 const { queryUser } = require('../database/querys');
 const { generateJWT } = require('../helpers/jwt');
+
 const createUsser = async (req, res = response) => {
     const { lastName, name, user, pass } = req.body;
     const salt = bcrypt.genSaltSync(5);
@@ -27,6 +28,7 @@ const createUsser = async (req, res = response) => {
         })
     }
 }
+
 const login = async (req, res = response) => {
     const { user, pass } = req.body;
     let id, name, rol;
